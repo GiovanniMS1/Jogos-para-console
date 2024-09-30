@@ -22,15 +22,15 @@ public class controlePlayer : MonoBehaviour
     public float playerHeight;
     public LayerMask whatIsGround;
     bool grounded;
-
     public Transform orientation;
-
     float horizontalInput;
     float verticalInput;
-
     Vector3 moveDirection;
-
     Rigidbody rb;
+
+    public RestartScreen restartScreen;
+
+    [SerializeField] private GameObject player, arma;
 
     private void Start()
     {
@@ -120,16 +120,30 @@ public class controlePlayer : MonoBehaviour
         readyToJump = true;
     }
 
+    public void OnCollisionEnter(Collision other)
+    {
+        if(other.collider.CompareTag("Bullet"))
+        {
+            TakeDamage(1);
+        }
+    }
+
     public void TakeDamage(int damage)
     {
+
         vida.value -= damage;
 
-        if(vida.value <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
+        if(vida.value == 0)
+        {
+            DestroyEnemy();
+            restartScreen.Setup();
+        }
 
     }
 
     private void DestroyEnemy()
     {
-        Destroy(gameObject);
+        Destroy(player);
+        Destroy(arma);
     }
 }

@@ -5,7 +5,6 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public int tempoDeVida = 3;
-    public int damage;
     public RaycastHit rayHit;
 
     private void OnCollisionEnter(Collision other)

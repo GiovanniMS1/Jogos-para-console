@@ -23,8 +23,6 @@ public class moveNPC : MonoBehaviour
     bool alreadyAttacked;
     public GameObject projectile;
 
-    public float damage;
-
     //States
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
